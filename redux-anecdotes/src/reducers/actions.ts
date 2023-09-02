@@ -1,3 +1,5 @@
+/* deprecated */
+
 export const voteFor = (id: string) => {
   return {
     type: "VOTE",
@@ -11,5 +13,12 @@ export const newAnecdote = (content: string) => {
     payload: { 
       content
      }
+  }
+}
+
+export const setFilter = (filter: string) => {
+  return {
+    type: "SET_FILTER",
+    payload: filter
   }
 }

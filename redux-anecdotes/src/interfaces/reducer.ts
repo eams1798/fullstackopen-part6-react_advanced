@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from "redux";
-import { IAnecdote } from "./anecdote";
+import { IAnecdote } from "./states";
 
-export type anecdoteReducer = Reducer<IAnecdote[], AnyAction>
+export type TAnecdoteReducer = Reducer<IAnecdote[], AnyAction>
+export type TFilterReducer = Reducer<string, AnyAction>

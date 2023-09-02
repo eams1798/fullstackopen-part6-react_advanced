@@ -1,4 +1,4 @@
-import { IAnecdote } from "../interfaces/anecdote"
+import { IAnecdote } from "../interfaces/states"
 
 export const getId = () => (100000 * Math.random()).toFixed(0)
   

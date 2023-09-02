@@ -1,6 +1,6 @@
-import { IAnecdote } from "../interfaces/anecdote"
-import { anecdoteReducer } from "../interfaces/reducer"
+import { IAnecdote } from "../interfaces/states"
 import { asObject } from "../utils/functions"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 const anecdotesAtStart: string[] = [
   'If it hurts, do it more often',
@@ -13,7 +13,7 @@ const anecdotesAtStart: string[] = [
 
 const initialState = anecdotesAtStart.map(anecdote => asObject(anecdote))
 
-const reducer: anecdoteReducer = (state = initialState, action) => {
+/* const reducer: TAnecdoteReducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
 
@@ -42,9 +42,31 @@ const reducer: anecdoteReducer = (state = initialState, action) => {
         ...state,
         asObject(action.payload.content)
       ]
+    default:
+      return state
   }
-
-  return state
 }
 
-export default reducer
+export default reducer */
+
+const anecdoteSlice = createSlice({
+  name: 'anecdotes',
+  initialState,
+  reducers: {
+    voteFor(state: IAnecdote[], action: PayloadAction<string>) {
+      const id = action.payload
+      const anecdoteToChange = state.find(a => a.id === id)
+
+      if (anecdoteToChange) {
+        const index = state.indexOf(anecdoteToChange)
+        state[index].votes++
+      }
+    },
+    newAnecdote(state: IAnecdote[], action: PayloadAction<string>) {
+      state.push(asObject(action.payload))
+    }
+  }
+})
+
+export const { voteFor, newAnecdote } = anecdoteSlice.actions
+export default anecdoteSlice.reducer

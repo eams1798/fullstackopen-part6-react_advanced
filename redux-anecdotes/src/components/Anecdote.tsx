@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
-import { IAnecdote } from "../interfaces/anecdote"
-import { voteFor } from "../reducers/actions"
+import { IAnecdote } from "../interfaces/states"
+import { voteFor } from "../reducers/anecdoteReducer"
+import { setNotification } from "../reducers/notificationReducer"
 
 interface IAnecdoteProps {
   properties: IAnecdote
@@ -11,6 +12,7 @@ const Anecdote = ({ properties }: IAnecdoteProps) => {
 
   const vote = () => {
     dispatch(voteFor(properties.id))
+    setNotification(`You voted: ${properties.content}. You are the (${properties.votes})th voter.`)
   }
 
   return (

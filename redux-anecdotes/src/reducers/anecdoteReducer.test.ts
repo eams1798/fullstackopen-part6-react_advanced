@@ -1,6 +1,6 @@
 // it could be wrong
 
-import { IAnecdote } from '../interfaces/anecdote'
+import { IAnecdote } from '../interfaces/states'
 import reducer from './anecdoteReducer'
 import deepFreeze from 'deep-freeze'
 
