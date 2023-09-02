@@ -9,7 +9,7 @@ const AnecdoteForm = () => {
     e.preventDefault()
     const content = e.currentTarget.content.value
     dispatch(newAnecdote(content))
-    setNotification(`New anecdote created: ${content}`)
+    dispatch(setNotification(`New anecdote created: ${content}`))
     e.currentTarget.reset()
   }
   return (

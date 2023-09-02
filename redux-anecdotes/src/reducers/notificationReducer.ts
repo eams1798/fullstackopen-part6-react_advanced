@@ -4,12 +4,13 @@ const notificationSlice = createSlice({
     name: 'notification',
     initialState: '',
     reducers: {
-        setNotification(state: string, action: PayloadAction<string>) {
-            state = action.payload
+        setNotification(_state_: string, action: PayloadAction<string>) {
+            return action.payload
         },
-        clearNotification(state: string/* , _a_: PayloadAction<string> */) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        clearNotification(_state_: string/* , _a_: PayloadAction<string> */) {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            state = ''
+            return ''
         }
     }
 })

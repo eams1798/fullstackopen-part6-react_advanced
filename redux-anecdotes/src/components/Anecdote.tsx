@@ -12,7 +12,7 @@ const Anecdote = ({ properties }: IAnecdoteProps) => {
 
   const vote = () => {
     dispatch(voteFor(properties.id))
-    setNotification(`You voted: ${properties.content}. You are the (${properties.votes})th voter.`)
+    dispatch(setNotification(`You voted: ${properties.content}. You are the ${properties.votes + 1}th voter.`))
   }
 
   return (

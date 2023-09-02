@@ -6,7 +6,7 @@ const Filter = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilter(event.target.value))
   }
-  const style = {
+  const style: React.CSSProperties = {
     marginBottom: 10
   }
 
