@@ -1,6 +1,6 @@
 export interface IAnecdote {
     content: string;
-    id: string;
+    id?: string;
     votes: number;
 }
 
