@@ -1,18 +1,17 @@
 import { useDispatch } from "react-redux"
-import { addAnecdote } from "../reducers/anecdoteReducer"
-import { setNotification } from "../reducers/notificationReducer"
-import anecdoteService from "../services/anecdotes"
+import { showNotification } from "../reducers/notificationReducer"
+import { AppThunkDispatch } from "../interfaces/reducer"
+import { addNewAnecdote } from "../reducers/anecdoteReducer"
 
 const AnecdoteForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppThunkDispatch>()
 
   const createAnecdote = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const content = e.currentTarget.content.value
     e.currentTarget.reset()
-    const newAnecdote = await anecdoteService.create(content)
-    dispatch(addAnecdote(newAnecdote))
-    dispatch(setNotification(`New anecdote created: ${content}`))
+    dispatch(addNewAnecdote(content))
+    dispatch(showNotification(`New anecdote created: ${content}`, 5))
   }
   return (
     <div>

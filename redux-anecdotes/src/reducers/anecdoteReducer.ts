@@ -1,6 +1,7 @@
 import { IAnecdote } from "../interfaces/states"
-import { Dispatch, PayloadAction, SliceCaseReducers, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, SliceCaseReducers, createSlice } from "@reduxjs/toolkit"
 import anecdoteService from "../services/anecdotes"
+import { AppThunkDispatch } from "../interfaces/reducer"
 
 const anecdoteSlice = createSlice<IAnecdote[], SliceCaseReducers<IAnecdote[]>>({
   name: 'anecdotes',
@@ -26,18 +27,17 @@ const anecdoteSlice = createSlice<IAnecdote[], SliceCaseReducers<IAnecdote[]>>({
 
 export const { voteFor, addAnecdote, setAnecdotes } = anecdoteSlice.actions
 
-// thunks
-export const initializeAnecdotes = () => async (dispatch: Dispatch) => {
+export const initializeAnecdotes = () => async (dispatch: AppThunkDispatch) => {
   const anecdotes = await anecdoteService.getAll()
   dispatch(setAnecdotes(anecdotes))
 }
 
-export const createAnecdote = (content: string) => async (dispatch: Dispatch) => {
+export const addNewAnecdote = (content: string) => async (dispatch: AppThunkDispatch) => {
   const newAnecdote = await anecdoteService.create(content)
   dispatch(addAnecdote(newAnecdote))
 }
 
-export const voteAnecdote = (id: string) => async (dispatch: Dispatch) => {
+export const voteAnecdote = (id: string) => async (dispatch: AppThunkDispatch) => {
   await anecdoteService.vote(id)
   dispatch(voteFor(id))
 }

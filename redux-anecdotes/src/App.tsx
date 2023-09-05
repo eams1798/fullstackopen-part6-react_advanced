@@ -4,11 +4,11 @@ import AnecdoteList from './components/AnecdoteList'
 import Filter from './components/Filter'
 import Notification from './components/Notification'
 import { useDispatch } from 'react-redux'
-import anecdoteService from './services/anecdotes'
-import { initializeAnecdotes, setAnecdotes } from './reducers/anecdoteReducer'
+import { initializeAnecdotes } from './reducers/anecdoteReducer'
+import { AppThunkDispatch } from './interfaces/reducer'
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppThunkDispatch>()
 
   useEffect(() => {
     dispatch(initializeAnecdotes()) // Argument of type '(dispatch: Dispatch) => Promise<void>' is not assignable to parameter of type 'AnyAction'.ts(2345)

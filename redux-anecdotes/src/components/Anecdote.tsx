@@ -1,18 +1,19 @@
 import { useDispatch } from "react-redux"
 import { IAnecdote } from "../interfaces/states"
-import { voteFor } from "../reducers/anecdoteReducer"
-import { setNotification } from "../reducers/notificationReducer"
+import { voteAnecdote } from "../reducers/anecdoteReducer"
+import { showNotification } from "../reducers/notificationReducer"
+import { AppThunkDispatch } from "../interfaces/reducer"
 
 interface IAnecdoteProps {
   properties: IAnecdote
 }
 
 const Anecdote = ({ properties }: IAnecdoteProps) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppThunkDispatch>()
 
   const vote = () => {
-    dispatch(voteFor(properties.id))
-    dispatch(setNotification(`You voted: ${properties.content}. You are the ${properties.votes + 1}th voter.`))
+    dispatch(voteAnecdote(properties.id!))
+    dispatch(showNotification(`You voted: ${properties.content}.`, 5))
   }
 
   return (
